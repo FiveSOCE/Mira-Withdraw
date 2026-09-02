@@ -15,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Base64;
 import java.util.List;
 import java.util.Locale;
@@ -44,8 +45,10 @@ public final class VoucherService {
         if (levels <= 0) throw new IllegalArgumentException("XP levels must be positive");
         ItemStack item = new ItemStack(Material.EXPERIENCE_BOTTLE);
         ItemMeta meta = item.getItemMeta();
-        meta.displayName(Text.c(plugin.getConfig().getString("items.xp.name", "&bWithdrawn Experience")));
-        meta.lore(replaceLore(plugin.getConfig().getStringList("items.xp.lore"), String.valueOf(levels)));
+        String name = plugin.getConfig().getString("items.xp.name", "&6&l%amount%L")
+                .replace("%amount%", formatInteger(levels));
+        meta.displayName(Text.c(name));
+        meta.lore(replaceLore(plugin.getConfig().getStringList("items.xp.lore"), formatInteger(levels)));
         meta.getPersistentDataContainer().set(typeKey, PersistentDataType.STRING, "xp");
         meta.getPersistentDataContainer().set(xpKey, PersistentDataType.LONG, levels);
         meta.getPersistentDataContainer().set(signatureKey, PersistentDataType.STRING, signature("xp", Long.toString(levels)));
@@ -57,8 +60,11 @@ public final class VoucherService {
         if (!Double.isFinite(amount) || amount <= 0D) throw new IllegalArgumentException("Money must be positive");
         ItemStack item = new ItemStack(Material.GOLD_INGOT);
         ItemMeta meta = item.getItemMeta();
-        meta.displayName(Text.c(plugin.getConfig().getString("items.money.name", "&6Withdrawn Money")));
-        meta.lore(replaceLore(plugin.getConfig().getStringList("items.money.lore"), plugin.money(amount)));
+        String formatted = formatMoneyValue(amount);
+        String name = plugin.getConfig().getString("items.money.name", "&6&l$%amount%")
+                .replace("%amount%", formatted);
+        meta.displayName(Text.c(name));
+        meta.lore(replaceLore(plugin.getConfig().getStringList("items.money.lore"), formatted));
         meta.setEnchantmentGlintOverride(true);
         meta.getPersistentDataContainer().set(typeKey, PersistentDataType.STRING, "money");
         meta.getPersistentDataContainer().set(moneyKey, PersistentDataType.DOUBLE, amount);
@@ -103,6 +109,16 @@ public final class VoucherService {
 
     private List<net.kyori.adventure.text.Component> replaceLore(List<String> lines, String amount) {
         return lines.stream().map(line -> Text.c(line.replace("%amount%", amount))).toList();
+    }
+
+    private String formatInteger(long value) {
+        return String.format(Locale.US, "%,d", value);
+    }
+
+    private String formatMoneyValue(double value) {
+        DecimalFormat format = new DecimalFormat("#,##0.##", DecimalFormatSymbols.getInstance(Locale.US));
+        format.setGroupingUsed(true);
+        return format.format(value);
     }
 
     private void ensureSecret() {
