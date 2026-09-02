@@ -1,0 +1,34 @@
+security:
+  signing-secret: ""
+
+items:
+  xp:
+    name: "&bWithdrawn Experience"
+    lore:
+      - "&7Stored Levels: &f%amount%"
+      - "&7Right-click to redeem."
+  money:
+    name: "&6Withdrawn Money"
+    lore:
+      - "&7Stored Balance: &f%amount%"
+      - "&7Right-click to redeem."
+
+currency:
+  symbol: "$"
+  decimals: 2
+
+messages:
+  prefix: "&5[MiraWithdraw] &r"
+  usage: "&e/withdraw <xp|money> <amount|all>"
+  no-permission: "&cYou do not have permission to do that."
+  player-only: "&cOnly players can use this command."
+  invalid-amount: "&cEnter a positive amount or all."
+  not-enough-levels: "&cYou do not have that many XP levels."
+  not-enough-money: "&cYou do not have that much money."
+  inventory-full: "&cYou need at least one free inventory slot."
+  economy-unavailable: "&cThe economy provider is unavailable."
+  withdraw-xp: "&aWithdrew &f%amount% &aXP level(s)."
+  withdraw-money: "&aWithdrew &f%amount%&a."
+  redeem-xp: "&aRedeemed &f%amount% &aXP level(s)."
+  redeem-money: "&aRedeemed &f%amount%&a."
+  invalid-voucher: "&cThat withdrawal voucher is invalid or has been modified."
