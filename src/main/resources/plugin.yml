@@ -1,0 +1,19 @@
+name: MiraWithdraw
+version: 0.1.0
+main: com.mira.withdraw.MiraWithdrawPlugin
+api-version: '1.21'
+authors: [FiveS]
+description: Secure XP and money withdrawal vouchers for the Mira plugin suite.
+softdepend: [Vault]
+commands:
+  withdraw:
+    description: Withdraw XP levels or money into a physical voucher.
+    usage: /withdraw <xp|money> <amount|all>
+    permission: mirawithdraw.use
+permissions:
+  mirawithdraw.use:
+    default: true
+  mirawithdraw.xp:
+    default: true
+  mirawithdraw.money:
+    default: true
