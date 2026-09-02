@@ -3,15 +3,18 @@ security:
 
 items:
   xp:
-    name: "&bWithdrawn Experience"
+    name: "&6&l%amount%L"
     lore:
-      - "&7Stored Levels: &f%amount%"
-      - "&7Right-click to redeem."
+      - "&7This is an Xp Pouch"
   money:
-    name: "&6Withdrawn Money"
+    name: "&6&l$%amount%"
     lore:
-      - "&7Stored Balance: &f%amount%"
-      - "&7Right-click to redeem."
+      - "&7This is a Money Pouch"
+
+sounds:
+  pouch: ENTITY_EXPERIENCE_ORB_PICKUP
+  volume: 1.0
+  pitch: 1.0
 
 currency:
   symbol: "$"
