@@ -49,6 +49,7 @@ public final class VoucherListener implements Listener {
                 }
                 event.getPlayer().setLevel(event.getPlayer().getLevel() + (int) voucher.xpLevels());
                 consume(event.getPlayer(), hand, item);
+                plugin.playPouchSound(event.getPlayer());
                 plugin.msg(event.getPlayer(), plugin.message("redeem-xp").replace("%amount%", Long.toString(voucher.xpLevels())));
             }
             case MONEY -> {
@@ -61,6 +62,7 @@ public final class VoucherListener implements Listener {
                     return;
                 }
                 consume(event.getPlayer(), hand, item);
+                plugin.playPouchSound(event.getPlayer());
                 plugin.msg(event.getPlayer(), plugin.message("redeem-money").replace("%amount%", plugin.money(voucher.money())));
             }
         }
