@@ -76,6 +76,7 @@ public final class WithdrawCommand implements CommandExecutor {
             return true;
         }
 
+        plugin.playPouchSound(player);
         plugin.msg(player, plugin.message("withdraw-xp").replace("%amount%", Integer.toString(levels)));
         return true;
     }
@@ -121,6 +122,7 @@ public final class WithdrawCommand implements CommandExecutor {
             return true;
         }
 
+        plugin.playPouchSound(player);
         plugin.msg(player, plugin.message("withdraw-money").replace("%amount%", plugin.money(amount)));
         return true;
     }
