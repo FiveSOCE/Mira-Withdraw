@@ -21,7 +21,7 @@ currency:
   decimals: 2
 
 messages:
-  prefix: "&5[MiraWithdraw] &r"
+  prefix: "&5&lMira &8>> &r"
   usage: "&e/withdraw <xp|money> <amount|all>"
   no-permission: "&cYou do not have permission to do that."
   player-only: "&cOnly players can use this command."
