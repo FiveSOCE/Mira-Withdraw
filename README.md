@@ -1,78 +1,43 @@
-# Mira-Withdraw
+# MiraWithdraw
 
-Secure physical withdrawals for XP levels and Vault-backed money.
+MiraWithdraw lets players convert XP levels or Vault-backed money into secure physical vouchers for the Mira Paper server suite. The vouchers can be traded or stored and later redeemed back into XP or economy balance.
 
 ## Download
 
-**Current release: v0.1.1**
+[**Download MiraWithdraw v0.1.1**](https://github.com/FiveSOCE/Mira-Withdraw/releases/download/v0.1.1/MiraWithdraw-0.1.1.jar)
 
-[Download MiraWithdraw-0.1.1.jar](https://github.com/FiveSOCE/Mira-Withdraw/releases/download/v0.1.1/MiraWithdraw-0.1.1.jar)
-
-[View all releases](https://github.com/FiveSOCE/Mira-Withdraw/releases)
-
-## Requirements
+## Requirements / Dependencies
 
 - Paper 1.21.11
 - Java 21
-- Vault + a Vault-compatible economy provider for money withdrawals
+- Vault optional for XP-only use
+- A Vault-compatible economy provider required for money withdrawals/redemptions
+
+## How MiraWithdraw Works
+
+`/withdraw xp <amount|all>` removes whole Minecraft XP levels and creates one custom Experience Bottle pouch containing that value. `/withdraw money <amount|all>` removes money from the player's live Vault balance and creates one custom Gold Ingot money pouch. `all` withdraws the player's entire available balance for the chosen type.
+
+Right-clicking an XP pouch redeems the stored levels instead of throwing the bottle. Right-clicking a money pouch deposits the stored value through Vault and consumes one pouch only after the deposit succeeds. Successful withdrawals and redemptions play a configurable XP-orb pickup sound.
+
+Pouches use signed persistent data. The HMAC signature covers the pouch type and stored value, and MiraWithdraw validates the canonical ItemStack so changes to name, lore, metadata or value invalidate the pouch. A signing secret is generated in `config.yml`; changing it after pouches have been issued will invalidate old pouches.
+
+Transaction safety restores XP or refunds money if a newly created pouch cannot be delivered, and money pouches are not consumed until Vault confirms a successful deposit.
 
 ## Commands
 
-```text
-/withdraw xp <amount|all>
-/withdraw money <amount|all>
-```
+| Command | Permission | What it does |
+| --- | --- | --- |
+| `/withdraw xp <amount>` | `mirawithdraw.use` + `mirawithdraw.xp` | Converts the specified whole XP levels into one physical XP pouch. |
+| `/withdraw xp all` | `mirawithdraw.use` + `mirawithdraw.xp` | Converts all current whole XP levels into one pouch. |
+| `/withdraw money <amount>` | `mirawithdraw.use` + `mirawithdraw.money` | Converts the specified Vault balance into one physical money pouch. |
+| `/withdraw money all` | `mirawithdraw.use` + `mirawithdraw.money` | Converts the player's full available Vault balance into one pouch. |
 
-XP amounts are whole Minecraft levels. `all` withdraws all current whole levels.
-
-Money uses the player's live Vault balance. `all` withdraws the full available balance.
-
-## XP pouch
-
-XP withdrawals create a single custom Experience Bottle.
-
-Examples:
-
-- `&6&l100L`
-- `&6&l1,000L`
-- `&6&l10,000L`
-
-Lore: `This is an Xp Pouch`
-
-The bottle is redeemed by right-clicking it. MiraWithdraw cancels normal Experience Bottle use, so the custom pouch is redeemed instead of being thrown.
-
-## Money pouch
-
-Money withdrawals create a glowing Gold Ingot.
-
-Examples:
-
-- `&6&l$100`
-- `&6&l$1,000`
-- `&6&l$10,000`
-- `&6&l$1,000,000`
-
-Lore: `This is a Money Pouch`
-
-Right-clicking deposits the stored value into the redeemer's Vault account and consumes one pouch.
-
-Both successful withdrawal and redemption play the Minecraft XP-orb pickup sound. Sound, volume and pitch are configurable in `config.yml`.
-
-## Security
-
-Withdrawal pouches use Mira-style signed PDC data. The HMAC signature covers both pouch type and stored value. MiraWithdraw also validates the entire canonical ItemStack before redemption, so altered names, lore, metadata or stored values invalidate the pouch.
-
-A private signing secret is generated automatically in `config.yml` on first startup.
-
-## Transaction safety
-
-- XP levels are restored if the pouch cannot be delivered.
-- Money is refunded if the pouch cannot be delivered.
-- Money pouches are only consumed after Vault confirms a successful deposit.
-- Exactly one pouch is consumed per redemption.
+Voucher redemption is performed by right-clicking the physical pouch rather than through a command.
 
 ## Permissions
 
-- `mirawithdraw.use`
-- `mirawithdraw.xp`
-- `mirawithdraw.money`
+| Permission | Default | What it does |
+| --- | --- | --- |
+| `mirawithdraw.use` | Everyone | Allows use of the `/withdraw` command. |
+| `mirawithdraw.xp` | Everyone | Allows XP-level withdrawals. |
+| `mirawithdraw.money` | Everyone | Allows Vault money withdrawals. |
