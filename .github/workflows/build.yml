@@ -6,6 +6,9 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,5 +26,19 @@ jobs:
       - name: Upload plugin jar
         uses: actions/upload-artifact@v4
         with:
-          name: MiraWithdraw
-          path: build/libs/MiraWithdraw-*.jar
+          name: MiraWithdraw-0.1.2
+          path: build/libs/MiraWithdraw-0.1.2.jar
+
+
+      - name: Publish v0.1.2 release if missing
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view v0.1.2 >/dev/null 2>&1; then
+            gh release create v0.1.2 \
+              build/libs/MiraWithdraw-0.1.2.jar \
+              --target "${{ github.sha }}" \
+              --title "MiraWithdraw v0.1.2" \
+              --notes "Releases the suite-standard Mira chat prefix in the actual downloadable JAR/config."
+          fi
