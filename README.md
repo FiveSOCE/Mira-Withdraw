@@ -4,7 +4,9 @@ MiraWithdraw lets players convert XP levels or Vault-backed money into secure ph
 
 ## Download
 
-[**Download MiraWithdraw v0.1.1**](https://github.com/FiveSOCE/Mira-Withdraw/releases/download/v0.1.1/MiraWithdraw-0.1.1.jar)
+[**Download MiraWithdraw v0.1.2**](https://github.com/FiveSOCE/Mira-Withdraw/releases/download/v0.1.2/MiraWithdraw-0.1.2.jar)
+
+Releases the suite-standard Mira chat prefix.
 
 ## Requirements / Dependencies
 
