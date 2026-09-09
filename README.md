@@ -1,12 +1,14 @@
 # MiraWithdraw
 
-MiraWithdraw lets players convert XP levels or Vault-backed money into secure physical vouchers for the Mira Paper server suite. The vouchers can be traded or stored and later redeemed back into XP or economy balance.
-
 ## Download
 
-[**Download MiraWithdraw v0.1.2**](https://github.com/FiveSOCE/Mira-Withdraw/releases/download/v0.1.3/MiraWithdraw-0.1.3.jar)
+**Latest compatibility release: v0.1.3**
 
-Releases the suite-standard Mira chat prefix.
+[**Download MiraWithdraw-0.1.3.jar**](https://github.com/FiveSOCE/Mira-Withdraw/releases/download/v0.1.3/MiraWithdraw-0.1.3.jar)
+
+[View all releases](https://github.com/FiveSOCE/Mira-Withdraw/releases)
+
+MiraWithdraw lets players convert XP levels or Vault-backed money into secure physical vouchers for the Mira Paper server suite. The vouchers can be traded or stored and later redeemed back into XP or economy balance.
 
 ## Requirements / Dependencies
 
