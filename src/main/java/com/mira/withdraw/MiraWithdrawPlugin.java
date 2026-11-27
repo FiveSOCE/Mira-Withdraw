@@ -36,7 +36,7 @@ public final class MiraWithdrawPlugin extends JavaPlugin {
         var command = getCommand("withdraw");
         if (command != null) command.setExecutor(new WithdrawCommand(this, economy, vouchers));
         getServer().getPluginManager().registerEvents(new VoucherListener(this, economy, vouchers), this);
-        getLogger().info("MiraWithdraw v" + getPluginMeta().getVersion() + " enabled.");
+        getLogger().info("MiraWithdraw v" + getDescription().getVersion() + " enabled.");
     }
 
     public String money(double value) {
