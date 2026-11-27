@@ -1,21 +1,33 @@
 # MiraWithdraw
 
-## Download
+## Version-specific downloads
 
-**Latest compatibility release: v0.1.3**
+| Paper server | Java | JAR name | Download |
+| --- | --- | --- | --- |
+| **1.18.2** | Java 17 | `MiraWithdraw_1.18.2.jar` | [Legacy release](https://github.com/FiveSOCE/Mira-Withdraw/releases/tag/dev-1.18.2) |
+| **1.21.11–26.2** | Java 21 baseline; modern server may require Java 25 | `MiraWithdraw_1.21.11-26.2.jar` | [Modern release](https://github.com/FiveSOCE/Mira-Withdraw/releases/tag/compat-modern-1.21.11-26.2) |
 
-[**Download MiraWithdraw-0.1.3.jar**](https://github.com/FiveSOCE/Mira-Withdraw/releases/download/v0.1.3/MiraWithdraw-0.1.3.jar)
+Assets become available after each successful CI run. Intermediate Minecraft 1.19–1.21.10 and full in-game testing remain uncertified.
 
-[View all releases](https://github.com/FiveSOCE/Mira-Withdraw/releases)
+[Legacy source](https://github.com/FiveSOCE/Mira-Withdraw/tree/compat/1.18.2) · [Modern source](https://github.com/FiveSOCE/Mira-Withdraw) · [All releases](https://github.com/FiveSOCE/Mira-Withdraw/releases)
 
-MiraWithdraw lets players convert XP levels or Vault-backed money into secure physical vouchers for the Mira Paper server suite. The vouchers can be traded or stored and later redeemed back into XP or economy balance.
+MiraWithdraw converts XP levels and economy balance into authenticated, signed physical vouchers. Right-clicking redeems the stored value; payout is verified before consumption.
 
-## Requirements / Dependencies
+## Dependencies
 
-- Paper 1.21.11
-- Java 21
-- Vault optional for XP-only use
-- A Vault-compatible economy provider required for money withdrawals/redemptions
+- **Required:** Paper and Java appropriate for the chosen server version.
+- **Optional:** Vault and a Vault-compatible economy for money vouchers. XP vouchers work without an economy.
+- **MiraCore:** Not required.
+- Backup `plugins/MiraWithdraw/`, especially the signing secret, before migration. Existing pouches rely on the original secret.
+
+## Commands and permissions
+
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/withdraw xp <amount\|all>` | `mirawithdraw.use` + `mirawithdraw.xp` | Convert XP levels into pouches |
+| `/withdraw money <amount\|all>` | `mirawithdraw.use` + `mirawithdraw.money` | Convert balance into signed money pouches |
+
+The nodes `mirawithdraw.use`, `mirawithdraw.xp` and `mirawithdraw.money` default to everyone.
 
 ## How MiraWithdraw Works
 
