@@ -4,10 +4,10 @@
 
 | Paper server | Java | JAR name | Download |
 | --- | --- | --- | --- |
-| **1.18.2** | Java 17 | `MiraWithdraw_1.18.2.jar` | [Legacy release](https://github.com/FiveSOCE/Mira-Withdraw/releases/tag/dev-1.18.2) |
-| **1.21.11–26.2** | Java 21 baseline; modern server may require Java 25 | `MiraWithdraw_1.21.11-26.2.jar` | [Modern release](https://github.com/FiveSOCE/Mira-Withdraw/releases/tag/compat-modern-1.21.11-26.2) |
+| **1.18.2** | Java 17 | `MiraWithdraw_1.18.2.jar` | [Download 1.18.2 JAR](https://github.com/FiveSOCE/Mira-Withdraw/releases/download/dev-1.18.2/MiraWithdraw_1.18.2.jar) |
+| **1.21.11–26.2** | Java 21 baseline; modern server may require Java 25 | `MiraWithdraw_1.21.11-26.2.jar` | [Download modern JAR](https://github.com/FiveSOCE/Mira-Withdraw/releases/download/compat-modern-1.21.11-26.2/MiraWithdraw_1.21.11-26.2.jar) |
 
-Assets become available after each successful CI run. Intermediate Minecraft 1.19–1.21.10 and full in-game testing remain uncertified.
+Both named release assets have passed CI and been verified. Intermediate Minecraft 1.19–1.21.10 and full in-game testing remain uncertified.
 
 [Legacy source](https://github.com/FiveSOCE/Mira-Withdraw/tree/compat/1.18.2) · [Modern source](https://github.com/FiveSOCE/Mira-Withdraw) · [All releases](https://github.com/FiveSOCE/Mira-Withdraw/releases)
 
