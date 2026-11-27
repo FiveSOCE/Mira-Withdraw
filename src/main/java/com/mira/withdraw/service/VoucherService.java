@@ -65,7 +65,7 @@ public final class VoucherService {
                 .replace("%amount%", formatted);
         meta.displayName(Text.c(name));
         meta.lore(replaceLore(plugin.getConfig().getStringList("items.money.lore"), formatted));
-        meta.setEnchantmentGlintOverride(true);
+        // The legacy Paper item meta API has no per-item glint override.
         meta.getPersistentDataContainer().set(typeKey, PersistentDataType.STRING, "money");
         meta.getPersistentDataContainer().set(moneyKey, PersistentDataType.DOUBLE, amount);
         meta.getPersistentDataContainer().set(signatureKey, PersistentDataType.STRING, signature("money", Double.toString(amount)));
