@@ -32,5 +32,5 @@ tasks.withType<JavaCompile>().configureEach {
 }
 
 tasks.jar {
-    archiveFileName.set("MiraWithdraw-${project.version}.jar")
+    archiveFileName.set("MiraWithdraw_1.21.11-26.2.jar")
 }
